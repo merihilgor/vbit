@@ -1,0 +1,40 @@
+apiVersion: apps.dnext.pia-team.com/v1alpha1
+kind: Dnext
+metadata:
+  name: dnext
+spec:
+  namespace: alpha
+  domain: k3sk8s.link
+  shared:
+    ingress:
+      annotations: |
+        route.openshift.io/termination: passthrough
+        nginx.ingress.kubernetes.io/backend-protocol: HTTPS
+        certmanager.k8s.io/issuer: "letsencrypt-prod-star"
+        certmanager.k8s.io/acme-challenge-type: dns01
+        certmanager.k8s.io/acme-dns01-provider: route53
+  tlsSecret: le-secret
+  minClusterSize: 1
+  maxClusterSize: 3
+  redis:
+    enabled: false
+    ClusterSize: 1
+  argocd:
+    enabled: true
+  postgres:
+    enabled: true
+  mongo:
+    enabled: false
+  kafka:
+    enabled: false
+  logging:
+    enabled: false
+  keycloak:
+    enabled: false
+    ingress:
+      annotations: |
+        route.openshift.io/termination: passthrough
+        nginx.ingress.kubernetes.io/backend-protocol: HTTPS
+        certmanager.k8s.io/issuer: "letsencrypt-prod-star"
+        certmanager.k8s.io/acme-challenge-type: dns01
+        certmanager.k8s.io/acme-dns01-provider: route53
