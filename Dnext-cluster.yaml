@@ -3,7 +3,7 @@ kind: Dnext
 metadata:
   name: dnext
 spec:
-  namespace: alpha
+  namespace: alpha2
   domain: k3sk8s.link
   shared:
     ingress:
